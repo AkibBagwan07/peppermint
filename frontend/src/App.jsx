@@ -15,7 +15,7 @@ const App = () => {
         const data = await response.json();
         setEntries(data);
 
-        // Calculate totals
+   
         const income = data
           .filter((e) => e.type === "Income")
           .reduce((sum, e) => sum + e.amount, 0);
