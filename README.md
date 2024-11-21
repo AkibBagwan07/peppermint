@@ -18,7 +18,7 @@ A simple and responsive web application to track your income and expenses, calcu
 ## Tech Stack
 
 - **Frontend:** React, Tailwind CSS
-- **Backend:** Hosted API at [peppermint-e4z7.onrender.com](https://peppermint-e4z7.onrender.com)
-- **Deployment:** Render (Backend)
+- **Backend:** Node js
+- **Deployment:** Render (https://peppermint-e4z7.onrender.com)
 
 
