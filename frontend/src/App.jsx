@@ -91,64 +91,77 @@ const App = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <div className="w-64 bg-teal-800 text-white p-6">
-        <h1 className="text-4xl font-bold mb-8 text-center">Expense Tracker</h1>
+    <div className="flex flex-col h-screen bg-gray-100 font-sans">
+      {/* Top Navigation Bar */}
+      <header className="bg-teal-900 text-white p-4 flex justify-between items-center shadow-md sticky top-0 z-10">
+        <h1 className="text-3xl font-semibold">Expense Tracker</h1>
         <nav>
-          <ul>
-            <li className="mb-4 text-lg">
-              <a href="#" className="hover:text-teal-300">Dashboard</a>
-            </li>
-            <li className="mb-4 text-lg">
-              <a href="#" className="hover:text-teal-300">Add Entry</a>
-            </li>
-            <li className="mb-4 text-lg">
-              <a href="#" className="hover:text-teal-300">View Entries</a>
-            </li>
+          <ul className="flex space-x-6">
+            <li><a href="#" className="hover:text-teal-300">Dashboard</a></li>
+            <li><a href="#" className="hover:text-teal-300">Add Entry</a></li>
+            <li><a href="#" className="hover:text-teal-300">View Entries</a></li>
           </ul>
         </nav>
+      </header>
+
+      <div className="flex flex-1 overflow-hidden">
+        {/* Sidebar */}
+        <div className="w-64 bg-teal-800 text-white p-6 hidden lg:block">
+          <nav>
+            <ul>
+              <li className="mb-6 text-lg">
+                <a href="#" className="hover:text-teal-300">Dashboard</a>
+              </li>
+              <li className="mb-6 text-lg">
+                <a href="#" className="hover:text-teal-300">Add Entry</a>
+              </li>
+              <li className="mb-6 text-lg">
+                <a href="#" className="hover:text-teal-300">View Entries</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        {/* Main Content Area */}
+        <main className="flex-1 p-6 overflow-y-auto">
+          {/* Stats Section in Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="bg-white shadow-lg rounded-lg p-6 text-center border-l-4 border-green-500 hover:scale-105 transition duration-300">
+              <h2 className="text-lg font-semibold text-gray-700">Total Income</h2>
+              <p className="text-3xl font-bold text-green-600">${totalIncome}</p>
+            </div>
+            <div className="bg-white shadow-lg rounded-lg p-6 text-center border-l-4 border-red-500 hover:scale-105 transition duration-300">
+              <h2 className="text-lg font-semibold text-gray-700">Total Expenses</h2>
+              <p className="text-3xl font-bold text-red-600">${totalExpense}</p>
+            </div>
+            <div className="bg-white shadow-lg rounded-lg p-6 text-center border-l-4 border-blue-500 hover:scale-105 transition duration-300">
+              <h2 className="text-lg font-semibold text-gray-700">Balance</h2>
+              <p className="text-3xl font-bold text-blue-600">${balance}</p>
+            </div>
+          </div>
+
+          {/* Add Entry Form */}
+          <div className="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Add your Expenses/Income</h2>
+            <AddEntryForm onAddEntry={handleAddEntry} />
+          </div>
+
+          {/* Entries List */}
+          <div className="bg-white shadow-md rounded-lg p-6">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Expense Entries</h2>
+            <EntryList entries={entries} onDeleteEntry={handleDeleteEntry} />
+          </div>
+        </main>
       </div>
 
-      {/* Main content */}
-      <div className="flex-1 p-8 overflow-auto">
-        {/* Stats Section in Row Layout */}
-        <div className="flex justify-between gap-6 mb-8">
-          <div className="bg-white shadow-lg rounded-lg p-6 text-center w-1/3 border-l-4 border-green-500">
-            <h2 className="text-lg font-semibold text-gray-700">Total Income</h2>
-            <p className="text-3xl font-bold text-green-600">${totalIncome}</p>
-          </div>
-          <div className="bg-white shadow-lg rounded-lg p-6 text-center w-1/3 border-l-4 border-red-500">
-            <h2 className="text-lg font-semibold text-gray-700">Total Expenses</h2>
-            <p className="text-3xl font-bold text-red-600">${totalExpense}</p>
-          </div>
-          <div className="bg-white shadow-lg rounded-lg p-6 text-center w-1/3 border-l-4 border-blue-500">
-            <h2 className="text-lg font-semibold text-gray-700">Balance</h2>
-            <p className="text-3xl font-bold text-blue-600">${balance}</p>
-          </div>
-        </div>
-
-        {/* Add Entry Form */}
-        <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Add your Expenses/Income</h2>
-          <AddEntryForm onAddEntry={handleAddEntry} />
-        </div>
-
-        {/* Entries List */}
-        <div className="bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Expense Entries</h2>
-          <EntryList entries={entries} onDeleteEntry={handleDeleteEntry} />
-        </div>
-
-        {/* Floating Action Button */}
-        <div className="fixed bottom-12 right-6">
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="bg-teal-600 text-white rounded-full p-4 shadow-xl hover:bg-teal-700 transition duration-300"
-          >
-            <span className="material-icons">add</span>
-          </button>
-        </div>
+      {/* Floating Action Button */}
+      <div className="fixed bottom-12 right-6">
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="bg-teal-600 text-white rounded-full p-4 shadow-xl hover:bg-teal-700 transition duration-300 transform hover:scale-110"
+        >
+          <span className="material-icons">add</span>
+        </button>
       </div>
     </div>
   );
