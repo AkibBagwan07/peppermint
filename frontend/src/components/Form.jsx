@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import Button from '@mui/material/Button';
 
 const EntryForm = ({ onAddEntry }) => {
     const [amount, setAmount] = useState("");
@@ -55,12 +56,10 @@ const EntryForm = ({ onAddEntry }) => {
             <option value="Expense">Expense</option>
           </select>
         </div>
-        <button
-          type="submit"
-          className="w-80 flex items-center justify-center bg-black text-white py-3 mt-4 rounded-md  transition"
-        >
-          Add Entry
-        </button>
+        <Button 
+        type="submit"
+        className="w-40 mt-10 flex items-center justify-center bg-teal text-white py-3 mt-4 rounded-md  transition"
+        variant="contained">Add</Button>
       </form>
     );
 }

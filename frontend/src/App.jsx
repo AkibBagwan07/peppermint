@@ -130,7 +130,7 @@ const App = () => {
 
         {/* Add Entry Form */}
         <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Add New Entry</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Add your Expenses/Income</h2>
           <AddEntryForm onAddEntry={handleAddEntry} />
         </div>
 
