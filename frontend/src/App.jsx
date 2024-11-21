@@ -67,7 +67,7 @@ const App = () => {
 
   const handleDeleteEntry = async (id) => {
     try {
-      const response = await fetch(`https://peppermint-e4z7.onrender.com/${id}`, {
+      const response = await fetch(`https://peppermint-e4z7.onrender.com/enteries/${id}`, {
         method: "DELETE",
       });
 
