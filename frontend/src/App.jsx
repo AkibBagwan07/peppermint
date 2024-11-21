@@ -11,7 +11,7 @@ const App = () => {
   useEffect(() => {
     const fetchEntries = async () => {
       try {
-        const response = await fetch("https://peppermint-e4z7.onrender.com/enteries");
+        const response = await fetch("https://peppermint-vlec.onrender.com/enteries");
         const data = await response.json();
         setEntries(data);
 
@@ -35,7 +35,7 @@ const App = () => {
 
   const handleAddEntry = async (newEntry) => {
     try {
-      const response = await fetch("https://peppermint-e4z7.onrender.com/enteries", {
+      const response = await fetch("https://peppermint-vlec.onrender.com/enteries", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newEntry),
@@ -66,7 +66,7 @@ const App = () => {
 
   const handleDeleteEntry = async (id) => {
     try {
-      const response = await fetch(`https://peppermint-e4z7.onrender.com/entries/${id}`, {
+      const response = await fetch(`https://peppermint-vlec.onrender.com/entries/${id}`, {
         method: "DELETE",
       });
 
